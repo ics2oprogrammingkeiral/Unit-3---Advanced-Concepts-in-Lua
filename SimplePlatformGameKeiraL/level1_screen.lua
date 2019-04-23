@@ -64,7 +64,7 @@ local motionx = 0
 local SPEED = 10
 local SPEED2 = -10
 local LINEAR_VELOCITY = -100
-local GRAVITY = 7
+local GRAVITY = 6
 
 local leftW 
 local topW
@@ -219,7 +219,8 @@ local function onCollision( self, event )
         end
 
         if  (event.target.myName == "ball1") or
-            (event.target.myName == "ball2") then
+            (event.target.myName == "ball2") or
+            (event.target.myName == "ball3") then
 
             -- get the ball that the user hit
             theBall = event.target

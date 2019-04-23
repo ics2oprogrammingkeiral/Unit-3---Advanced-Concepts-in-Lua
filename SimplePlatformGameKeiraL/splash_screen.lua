@@ -40,7 +40,7 @@ local function gotoMainMenu()
     composer.gotoScene( "main_menu" )
 end
 
---When this function is called, play the springt sound effect
+--When this function is called, play the spring sound effect
  local function SpringSoundEffect( )
     -- play sound
     springSoundChannel = audio.play(springsound)
