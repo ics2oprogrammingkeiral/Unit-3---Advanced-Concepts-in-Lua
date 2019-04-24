@@ -1,8 +1,9 @@
 -----------------------------------------------------------------------------------------
---
--- SceneTemplate.lua
--- Scene Template (Composer API)
---
+-- you_lose.lua
+-- Created by: Gil Robern
+-- Modified by: Keira Lawson
+-- Date: April 17, 2019
+-- Description: This shows the player that they lost the game and plays a booing sound.
 -----------------------------------------------------------------------------------------
 
 -----------------------------------------------------------------------------------------
@@ -25,18 +26,21 @@ sceneName = "you_lose"
 local scene = composer.newScene( sceneName )
 
 -----------------------------------------------------------------------------------------
--- FORWARD REFERENCES
+-- LOCAL VARIABLES
 -----------------------------------------------------------------------------------------
 
 -- local variables for the scene
 local bkg
 
-----------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
 
---------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
+-- GLOBAL SCENE FUNCTIONS
+-----------------------------------------------------------------------------------------
+
+
 -- The function called when the screen doesn't exist
 function scene:create( event )
 
@@ -44,23 +48,16 @@ function scene:create( event )
     local sceneGroup = self.view
 
     -- Display background
-    bkg = display.newImage("Images/YouLose.png")
+    bkg = display.newImage("Images/You Lose.png")
     bkg.x = display.contentCenterX
     bkg.y = display.contentCenterY
     bkg.width = display.contentWidth
     bkg.height = display.contentHeight
-   
+    -----------------------------------------------------------------------------------------     
+
     -- Associating display objects with this scene 
     sceneGroup:insert( bkg )
-
-    -- play the sound effect
-    youLoseSoundChannel = audio.play(correctSound)
-  
-end    
-
------------------------------------------------------------------------------------------
--- GLOBAL SCENE FUNCTIONS
------------------------------------------------------------------------------------------
+end
 
 -----------------------------------------------------------------------------------------
 
@@ -132,13 +129,6 @@ function scene:destroy( event )
     -- Insert code here to clean up the scene.
     -- Example: remove display objects, save state, etc.
 end
-
------------------------------------------------------------------------------------------
--- SOUND EFFECTS
------------------------------------------------------------------------------------------
--- add the sound effect variables
-local youLoseSound = audio.loadSound("Sounds/YouLose.mp3")
-local youLoseSoundChannel
 
 -----------------------------------------------------------------------------------------
 -- EVENT LISTENERS

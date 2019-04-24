@@ -1,11 +1,9 @@
 -----------------------------------------------------------------------------------------
--- Title: Simple Platform Game
--- Name: Keira Lawson
--- Course: ICS2O/3C
--- This program is a simple platform game, when the character hits 3 soccer balls 
--- the character can go to the door and the player wins. I added a sound effect for the
--- "you lose", "you win", and hitting the spikes. I added a right wall so the character 
--- cannot go off screen.
+-- main.lua
+-- Created by: Gil Robern
+-- Modified by: Keira Lawson
+-- Date: April 17, 2019
+-- Description: This calls the splash screen of the app to load itself.
 -----------------------------------------------------------------------------------------
 
 -- Hiding Status Bar
@@ -18,5 +16,4 @@ local composer = require( "composer" )
 
 -----------------------------------------------------------------------------------------
 
--- Go to the intro screen
 composer.gotoScene( "level1_screen" )
