@@ -74,6 +74,9 @@ local userAnswerBoxPlaceholder
 local correctSound
 local booSound
 
+-- answer counter
+
+
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
