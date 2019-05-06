@@ -18,25 +18,81 @@ sceneName = "splash_screen"
 -- Create Scene Object
 local scene = composer.newScene( sceneName )
 
-----------------------------------------------------------------------------------------
--- LOCAL VARIABLES
------------------------------------------------------------------------------------------
- 
--- The local variables for this scene
-local beetleship
-local scrollXSpeed = 8
-local scrollYSpeed = -3
-local bubbleSounds = audio.loadSound("Sounds/bubbles.mp3")
-local bubbleSoundsChannel
+
+-- set the background colour
+display.setDefault("background", 1, 1, 1)
+---------------------------------------------------------------
+-- GLOBAL VARIABLES -- 
+---------------------------------------------------------------
+scrollSpeed = 10
+
+---------------------------------------------------------------
+-- LOCAL VARIABLES -- 
+---------------------------------------------------------------
+local plate
+local slime
+local fork
+local spoon
+---------------------------------------------------------------
+-- SOUNDS -- 
+---------------------------------------------------------------
+local crashSound = audio.loadSound("Sounds/crash.mp3")
+local crashSoundsChannel
+
+
 
 --------------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 --------------------------------------------------------------------------------------------
+-- move the plate to the starting poisition
+local function MovePlate( event )
+    -- add the scroll speed to the y-value
+    plate.y = plate.y + scrollSpeed
 
--- The function that moves the beetleship across the screen
-local function moveBeetleship()
-    beetleship.x = beetleship.x + scrollXSpeed
-    beetleship.y = beetleship.y + scrollYSpeed
+    -- make the plate stop after it reaches half
+    if (plate.y >= display.contentHeight/2) then
+        -- stop moving lamp
+        Runtime:removeEventListener("enterFrame", MovePlate)
+        -- play crash sound
+        crashSoundsChannel = audio.play(crashSound )
+    end
+end
+
+-- move the slime to the starting poisition
+local function MoveSlime( event )
+    -- add the scroll speed to the y-value
+    slime.y = slime.y + scrollSpeed
+        -- make the plate stop after it reaches half
+    if (slime.y >= display.contentHeight/1.5) then
+        -- stop moving lamp
+        Runtime:removeEventListener("enterFrame", MoveSlime)
+    end
+end
+
+-- move the fork to the starting poisition
+local function MoveFork( event )
+    -- add the scroll speed to the y-value
+    fork.y = fork.y + scrollSpeed
+        -- make the plate stop after it reaches half
+    if (fork.y >= display.contentHeight/2) then
+        -- stop moving lamp
+        Runtime:removeEventListener("enterFrame", MoveFork)
+        -- play crash sound
+        crashSoundsChannel = audio.play(crashSound )
+    end
+end
+
+-- move the spoon to the starting poisition
+local function MoveSpoon( event )
+    -- add the scroll speed to the y-value
+    spoon.y = spoon.y + scrollSpeed
+        -- make the plate stop after it reaches half
+    if (spoon.y >= display.contentHeight/2) then
+        -- stop moving lamp
+        Runtime:removeEventListener("enterFrame", MoveSpoon)
+        -- play crash sound
+        crashSoundsChannel = audio.play(crashSound )
+    end
 end
 
 -- The function that will go to the main menu 
@@ -54,21 +110,35 @@ function scene:create( event )
     -- Creating a group that associates objects with the scene
     local sceneGroup = self.view
 
-    -- set the background to be black
-    display.setDefault("background", 0, 0, 0)
+    ---------------------------------------------------------------
+    -- OBJECTS -- 
+    ---------------------------------------------------------------
+    -- create the plate
+    plate = display.newImageRect("Images/plate.png", 600, 450)
+    plate.x = display.contentWidth/2
+    plate.y = display.contentHeight/-2
 
-    -- Insert the beetleship image
-    beetleship = display.newImageRect("Images/beetleship.png", 200, 200)
+    -- create the slime
+    slime = display.newImageRect("Images/slime.png", 600, 400)
+    slime.x = display.contentWidth/2
+    slime.y = display.contentHeight/-3
 
-    -- set the initial x and y position of the beetleship
-    beetleship.x = 100
-    beetleship.y = display.contentHeight/2
+    -- create the fork
+    fork = display.newImageRect("Images/fork.png", 150, 450)
+    fork.x = display.contentWidth/8
+    fork.y = display.contentHeight/-2
 
-    -- Insert objects into the scene group in order to ONLY be associated with this scene
-    sceneGroup:insert( beetleship )
+    -- create the spoon
+    spoon = display.newImageRect("Images/spoon.png", 150, 450)
+    spoon.x = 880
+    spoon.y = display.contentHeight/-2
 
-end -- function scene:create( event )
+    sceneGroup:insert( plate )
+    sceneGroup:insert( slime )
+    sceneGroup:insert( fork )
+    sceneGroup:insert( spoon)
 
+end
 --------------------------------------------------------------------------------------------
 
 -- The function called when the scene is issued to appear on screen
@@ -90,10 +160,12 @@ function scene:show( event )
 
     elseif ( phase == "did" ) then
         -- start the splash screen music
-        bubbleSoundsChannel = audio.play(bubbleSounds )
 
-        -- Call the moveBeetleship function as soon as we enter the frame.
-        Runtime:addEventListener("enterFrame", moveBeetleship)
+        -- Call the moveplate, slime, fork, and spoon functions as soon as we enter the frame.        
+        Runtime:addEventListener("enterFrame", MovePlate)
+        Runtime:addEventListener("enterFrame", MoveSlime)
+        Runtime:addEventListener("enterFrame", MoveFork)
+        Runtime:addEventListener("enterFrame", MoveSpoon)
 
         -- Go to the main menu screen after the given time.
         timer.performWithDelay ( 3000, gotoMainMenu)          
@@ -122,9 +194,11 @@ function scene:hide( event )
 
     -- Called immediately after scene goes off screen.
     elseif ( phase == "did" ) then
-        
-        -- stop the jungle sounds channel for this screen
-        audio.stop(bubbleSoundsChannel)
+        -- remove event listeners
+        Runtime:removeEventListener("enterFrame", MovePlate)
+        Runtime:removeEventListener("enterFrame", MoveSlime)
+        Runtime:removeEventListener("enterFrame", MoveFork)
+        Runtime:removeEventListener("enterFrame", MoveSpoon)
     end
 
 end --function scene:hide( event )
@@ -145,9 +219,6 @@ function scene:destroy( event )
     -- Example: remove display objects, save state, etc.
 end -- function scene:destroy( event )
 
------------------------------------------------------------------------------------------
--- EVENT LISTENERS
------------------------------------------------------------------------------------------
 
 -- Adding Event Listeners
 scene:addEventListener( "create", scene )

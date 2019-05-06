@@ -38,6 +38,33 @@ local creditsButton
 local instructionsButton
 
 -----------------------------------------------------------------------------------------
+-- GLOBAL VARIABLES
+-----------------------------------------------------------------------------------------
+-- create the plate
+plate = display.newImageRect("Images/plate.png", 600, 450)
+    plate.x = display.contentWidth/2
+    plate.y = display.contentHeight/-2
+
+-- create the slime
+ slime = display.newImageRect("Images/slime.png", 600, 400)
+    slime.x = display.contentWidth/2
+    slime.y = display.contentHeight/-3
+
+-- create the fork
+fork = display.newImageRect("Images/fork.png", 150, 450)
+    fork.x = display.contentWidth/8
+    fork.y = display.contentHeight/-2
+
+-- create the spoon
+spoon = display.newImageRect("Images/spoon.png", 150, 450)
+    spoon.x = 880
+    spoon.y = display.contentHeight/-2
+    
+plate.isVisible = false
+slime.isVisible = false
+spoon.isVisible = false
+fork.isVisible = false
+-----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
 
@@ -49,14 +76,14 @@ end
 -----------------------------------------------------------------------------------------
 -- Creating Transition Function to Instructions Page
 local function InstructionsTransition( )       
-    composer.gotoScene( "introduction_screen", {effect = "fromRight", time = 500})
+    composer.gotoScene( "instruction_screen", {effect = "fromRight", time = 500})
 end 
 
 -----------------------------------------------------------------------------------------
 
 -- Creating Transition to Level1 Screen
 local function Level1ScreenTransition( )
-    composer.gotoScene( "level1_screen", {effect = "zoomInOutFade", time = 1000})
+    composer.gotoScene( "level1_screen", {effect = "flipFadeOutIn", time = 1000})
 end    
 
 -- INSERT LOCAL FUNCTION DEFINITION THAT GOES TO INSTRUCTIONS SCREEN 
