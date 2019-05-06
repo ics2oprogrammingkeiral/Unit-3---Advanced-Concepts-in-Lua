@@ -18,7 +18,7 @@ local widget = require( "widget" )
 -----------------------------------------------------------------------------------------
 
 -- Naming Scene
-sceneName = "introduction_screen"
+sceneName = "instruction_screen"
 
 -- Creating Scene Object
 scene = composer.newScene( sceneName ) -- This function doesn't accept a string, only a variable containing a string
@@ -74,7 +74,7 @@ function scene:create( event )
     backButton = widget.newButton( 
     {
         -- Setting Position
-        x = display.contentWidth*4/8,
+        x = display.contentWidth*3.5/8,
         y = display.contentHeight*15/16,
 
         -- Setting Dimensions

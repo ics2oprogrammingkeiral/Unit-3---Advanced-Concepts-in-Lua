@@ -40,30 +40,8 @@ local instructionsButton
 -----------------------------------------------------------------------------------------
 -- GLOBAL VARIABLES
 -----------------------------------------------------------------------------------------
--- create the plate
-plate = display.newImageRect("Images/plate.png", 600, 450)
-    plate.x = display.contentWidth/2
-    plate.y = display.contentHeight/-2
 
--- create the slime
- slime = display.newImageRect("Images/slime.png", 600, 400)
-    slime.x = display.contentWidth/2
-    slime.y = display.contentHeight/-3
 
--- create the fork
-fork = display.newImageRect("Images/fork.png", 150, 450)
-    fork.x = display.contentWidth/8
-    fork.y = display.contentHeight/-2
-
--- create the spoon
-spoon = display.newImageRect("Images/spoon.png", 150, 450)
-    spoon.x = 880
-    spoon.y = display.contentHeight/-2
-    
-plate.isVisible = false
-slime.isVisible = false
-spoon.isVisible = false
-fork.isVisible = false
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
@@ -76,7 +54,7 @@ end
 -----------------------------------------------------------------------------------------
 -- Creating Transition Function to Instructions Page
 local function InstructionsTransition( )       
-    composer.gotoScene( "instruction_screen", {effect = "fromRight", time = 500})
+    composer.gotoScene( "instruction_screen", {effect = "flipFadeOutIn", time = 500})
 end 
 
 -----------------------------------------------------------------------------------------
@@ -163,8 +141,8 @@ function scene:create( event )
             y = display.contentHeight*7/8,
 
             -- Insert the images here
-            defaultFile = "Images/Instructions Button Pressed.png",
-            overFile = "Images/Instructions Button.png",
+            defaultFile = "Images/Instructions Button.png",
+            overFile = "Images/Instructions Button Pressed.png",
 
             -- When the button is released, call the Credits transition function
             onRelease = InstructionsTransition

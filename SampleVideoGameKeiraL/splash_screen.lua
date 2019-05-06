@@ -21,6 +21,7 @@ local scene = composer.newScene( sceneName )
 
 -- set the background colour
 display.setDefault("background", 1, 1, 1)
+
 ---------------------------------------------------------------
 -- GLOBAL VARIABLES -- 
 ---------------------------------------------------------------
@@ -33,13 +34,12 @@ local plate
 local slime
 local fork
 local spoon
+
 ---------------------------------------------------------------
 -- SOUNDS -- 
 ---------------------------------------------------------------
 local crashSound = audio.loadSound("Sounds/crash.mp3")
 local crashSoundsChannel
-
-
 
 --------------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
