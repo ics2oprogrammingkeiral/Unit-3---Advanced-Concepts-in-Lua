@@ -1,7 +1,9 @@
 -- Title: SampleVideoGame
 -- Name: Keira L
 -- Course: ICS2O/3C
--- This program 
+-- This program runs a sample video game with an instructions screen
+-- and credits screen to give the user information. It also displays a level 1 when you 
+-- click play.
 -----------------------------------------------------------------------------------------
 
 -- Hiding Status Bar
