@@ -1,8 +1,8 @@
 -----------------------------------------------------------------------------------------
 --
 -- game_level1.lua
--- Created by: Daniel
--- Date: Nov. 22nd, 2014
+-- Created by: Keira Lawson
+-- Date: April 27, 2019
 -- Description: This is the level 1 screen of the game.
 -----------------------------------------------------------------------------------------
 
@@ -74,7 +74,13 @@ local userAnswerBoxPlaceholder
 local correctSound
 local booSound
 
+-- answer counter
+local answerCounter = 0
+local numberOfCorrect
+local correctAnswers
+local answerObject
 
+-- 
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
@@ -123,10 +129,10 @@ local function DetermineAlternateAnswers()
 -- RESET ALL X POSITIONS OF ANSWER BOXES (because the x-position is changed when it is
 -- placed into the black box)
 -----------------------------------------------------------------------------------------
-    answerbox.x = display.contentWidth * 0.1
-    alternateAnswerBox1.x = display.contentWidth * 0.1
-    alternateAnswerBox2.x = display.contentWidth * 0.1
-    alternateAnswerBox3.x = display.contentWidth * 0.1
+    answerbox.x = display.contentWidth * 0.9
+    alternateAnswerBox1.x = display.contentWidth * 0.9
+    alternateAnswerBox2.x = display.contentWidth * 0.9
+    alternateAnswerBox3.x = display.contentWidth * 0.9
 
 
 end
@@ -148,10 +154,10 @@ local function PositionAnswers()
         alternateAnswerBox2.y = display.contentHeight * 0.70
 
         --alternateAnswerBox1
-        alternateAnswerBox1.y = display.contentHeight * 0.85
+        alternateAnswerBox1.y = display.contentHeight * 0.55
 
         --alternateAnswerBox3
-        alternateAnswerBox3.y = display.contentHeight * 0.55
+        alternateAnswerBox3.y = display.contentHeight * 0.85
 
         ---------------------------------------------------------
         --remembering their positions to return the answer in case it's wrong
@@ -169,10 +175,10 @@ local function PositionAnswers()
         alternateAnswerBox2.y = display.contentHeight * 0.4
 
         --alternateAnswerBox1
-        alternateAnswerBox1.y = display.contentHeight * 0.85
+        alternateAnswerBox1.y = display.contentHeight * 0.7
 
         --alternateAnswerBox3
-        alternateAnswerBox3.y = display.contentHeight * 0.7
+        alternateAnswerBox3.y = display.contentHeight * 0.85
 
         --remembering their positions to return the answer in case it's wrong
         alternateAnswerBox1PreviousY = alternateAnswerBox1.y
@@ -188,10 +194,10 @@ local function PositionAnswers()
         alternateAnswerBox2.y = display.contentHeight * 0.55
 
         --alternateAnswerBox1
-        alternateAnswerBox1.y = display.contentHeight * 0.85
+        alternateAnswerBox1.y = display.contentHeight * 0.4
 
         --alternateAnswerBox3
-        alternateAnswerBox3.y = display.contentHeight * 0.4
+        alternateAnswerBox3.y = display.contentHeight * 0.85
 
         --remembering their positions to return the answer in case it's wrong
         alternateAnswerBox1PreviousY = alternateAnswerBox1.y
@@ -304,7 +310,6 @@ local function TouchListenerAnswerBox1(touch)
         end
     end
 end 
-
 
 local function TouchListenerAnswerBox2(touch)
     --only work if none of the other boxes have been touched
@@ -432,7 +437,7 @@ function scene:create( event )
 
     --the text that displays the question
     questionText = display.newText( "" , 0, 0, nil, 100)
-    questionText.x = display.contentWidth * 0.6
+    questionText.x = display.contentWidth * 0.3
     questionText.y = display.contentHeight * 0.9
 
     -- create the soccer ball and place it on the scene
@@ -460,7 +465,7 @@ function scene:create( event )
 
     -- the black box where the user will drag the answer
     userAnswerBoxPlaceholder = display.newImageRect("Images/userAnswerBoxPlaceholder.png",  130, 130, 0, 0)
-    userAnswerBoxPlaceholder.x = display.contentWidth * 0.9
+    userAnswerBoxPlaceholder.x = display.contentWidth * 0.6
     userAnswerBoxPlaceholder.y = display.contentHeight * 0.9
 
     ----------------------------------------------------------------------------------

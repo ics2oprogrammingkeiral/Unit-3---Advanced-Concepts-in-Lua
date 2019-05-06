@@ -1,8 +1,8 @@
 -----------------------------------------------------------------------------------------
 --
--- credits_screen.lua
--- Created by: Daniel Lopez-Carreon
--- Date: Nov. 24th, 2014
+-- win_screen.lua
+-- Created by: Keira Lawson
+-- Date: April 27, 2019
 -- Description: This is the you win screen
 -----------------------------------------------------------------------------------------
 
