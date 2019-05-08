@@ -36,11 +36,14 @@ local bkg_image
 local playButton
 local creditsButton
 local instructionsButton
+local muteButton
+local unmuteButton
 
 -----------------------------------------------------------------------------------------
 -- GLOBAL VARIABLES
 -----------------------------------------------------------------------------------------
 
+soundOn = true
 
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
@@ -64,7 +67,10 @@ local function Level1ScreenTransition( )
     composer.gotoScene( "level1_screen", {effect = "flipFadeOutIn", time = 1000})
 end    
 
--- INSERT LOCAL FUNCTION DEFINITION THAT GOES TO INSTRUCTIONS SCREEN 
+-----------------------------------------------------------------------------------------
+
+-- 
+local function
 
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
