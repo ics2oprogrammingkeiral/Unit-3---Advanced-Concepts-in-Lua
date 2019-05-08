@@ -39,6 +39,10 @@ local instructionsButton
 local muteButton
 local unmuteButton
 
+-- background music
+local bkgMusic = audio.loadStream("Sounds/mii-plaza.mp3")
+local bkgMusicChannel 
+
 -----------------------------------------------------------------------------------------
 -- GLOBAL VARIABLES
 -----------------------------------------------------------------------------------------
@@ -69,8 +73,20 @@ end
 
 -----------------------------------------------------------------------------------------
 
--- 
-local function
+-- this function mmutes the sound when the mute button is pressed
+local function Mute(touch)
+    if (touch.phase == "ended") then
+        -- pause the sound 
+        audio.pause(bkgMusic)
+        -- set the boolean variable to be false (sound is now muted)
+        soundOn = false
+        -- hide the mute button
+        muteButton.isVisible = false
+        -- reveal the unmute button
+        unmuteButton.isVisible = true
+    end
+end
+
 
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
@@ -96,9 +112,6 @@ function scene:create( event )
 
     -- Associating display objects with this scene 
     sceneGroup:insert( bkg_image )
-
-    -- Send the background image to the back layer so all other objects can be on top
-    bkg_image:toBack()
 
     -----------------------------------------------------------------------------------------
     -- BUTTON WIDGETS
@@ -163,12 +176,34 @@ function scene:create( event )
 
         -- scale down the size
         instructionsButton:scale(0.55, 0.55)
+
+    -----------------------------------------------------------------------------------------
+    -- creating the mute button
+    muteButton = display.newImageRect("Images/muteButton.png", 200, 200)
+    muteButton.x = display.contentWidth*1/10
+    muteButton.y = display.contentHeight*1.3/10
+    muteButton.isVisible = true
+
+    -- scale down the size
+    muteButton:scale(0.75, 0.75)
+
+    -----------------------------------------------------------------------------------------
+    -- creating the unmute button
+    unmuteButton = display.newImageRect("Images/unmuteButton.png", 200, 200)
+    unmuteButton.x = display.contentWidth*1/10
+    unmuteButton.y = display.contentHeight*1.3/10
+    unmuteButton.isVisible = false   
+
+    -- scale down the size
+    muteButton:scale(0.75, 0.75)    
     
     -----------------------------------------------------------------------------------------
     -- Associating button widgets with this scene
     sceneGroup:insert( playButton )
     sceneGroup:insert( creditsButton )
     sceneGroup:insert( instructionsButton ) 
+    sceneGroup:insert( muteButton )
+    sceneGroup:insert( unmuteButton )
 
     -- INSERT INSTRUCTIONS BUTTON INTO SCENE GROUP
 
@@ -199,8 +234,9 @@ function scene:show( event )
     -- Insert code here to make the scene come alive.
     -- Example: start timers, begin animation, play audio, etc.
     elseif ( phase == "did" ) then       
-        
-
+        -- play the background music for this scene
+        bkgMusicChannel = audio.play( bkgMusic, {channel=1, loops=-1} )
+        muteButton:addEventListener("touch", Mute)
     end
 
 end -- function scene:show( event )
@@ -220,14 +256,13 @@ function scene:hide( event )
     -----------------------------------------------------------------------------------------
 
     if ( phase == "will" ) then
-        -- Called when the scene is on screen (but is about to go off screen).
-        -- Insert code here to "pause" the scene.
-        -- Example: stop timers, stop animation, stop audio, etc.
+        bkgMusic = audio.stop()
 
     -----------------------------------------------------------------------------------------
 
     elseif ( phase == "did" ) then
-        -- Called immediately after scene goes off screen.
+        muteButton:removeEventListener("touch", Mute)
+
     end
 
 end -- function scene:hide( event )
