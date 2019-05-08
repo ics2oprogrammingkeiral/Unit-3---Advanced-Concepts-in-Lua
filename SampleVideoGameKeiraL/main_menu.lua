@@ -102,8 +102,8 @@ function scene:create( event )
     playButton = widget.newButton( 
         {   
             -- Set its position on the screen relative to the screen size
-            x = display.contentWidth*1.25/8,
-            y = display.contentHeight*5.75/8,
+            x = display.contentWidth*1/8,
+            y = display.contentHeight*4.75/8,
 
             -- Insert the images here
             defaultFile = "Images/PlayButtonUnpressed.png",
@@ -115,7 +115,7 @@ function scene:create( event )
 
 
         -- scale down the size
-        playButton:scale(0.6, 0.6)
+        playButton:scale(0.55, 0.55)
 
     -----------------------------------------------------------------------------------------
 
@@ -123,7 +123,7 @@ function scene:create( event )
     creditsButton = widget.newButton( 
         {
             -- Set its position on the screen relative to the screen size
-            x = display.contentWidth*1.25/8,
+            x = display.contentWidth*1/8,
             y = display.contentHeight*7.25/8,
 
             -- Insert the images here
@@ -135,7 +135,7 @@ function scene:create( event )
         } ) 
 
         -- scale down the size
-        creditsButton:scale(0.6, 0.6)
+        creditsButton:scale(0.55, 0.55)
 
     -----------------------------------------------------------------------------------------
 
@@ -143,8 +143,8 @@ function scene:create( event )
     instructionsButton = widget.newButton( 
         {
             -- Set its position on the screen relative to the screen size
-            x = display.contentWidth*1.25/8,
-            y = display.contentHeight*6.75/8,
+            x = display.contentWidth*1/8,
+            y = display.contentHeight*6/8,
 
             -- Insert the images here
             defaultFile = "Images/InstructionsButtonUnpressed.png",
@@ -156,7 +156,7 @@ function scene:create( event )
 
 
         -- scale down the size
-        instructionsButton:scale(0.6, 0.6)
+        instructionsButton:scale(0.55, 0.55)
     
     -----------------------------------------------------------------------------------------
     -- Associating button widgets with this scene

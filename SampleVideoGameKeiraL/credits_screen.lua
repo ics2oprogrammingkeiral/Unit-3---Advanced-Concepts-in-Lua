@@ -74,8 +74,8 @@ function scene:create( event )
     backButton = widget.newButton( 
     {
         -- Setting Position
-        x = display.contentWidth*4/8,
-        y = display.contentHeight*15/16,
+        x = display.contentWidth*7.25/8,
+        y = display.contentHeight*13.5/16,
 
         -- Setting Dimensions
         -- width = 1000,
@@ -89,6 +89,9 @@ function scene:create( event )
         onRelease = BackTransition
 
     } )
+
+        -- scale down the size
+        backButton:scale(0.55, 0.55)
 
     -----------------------------------------------------------------------------------------
 
