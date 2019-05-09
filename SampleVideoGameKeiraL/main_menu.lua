@@ -73,7 +73,7 @@ end
 
 -----------------------------------------------------------------------------------------
 
--- this function mmutes the sound when the mute button is pressed
+-- this function mutes the sound when the mute button is pressed
 local function Mute(touch)
     if (touch.phase == "ended") then
         -- pause the sound 
@@ -87,6 +87,21 @@ local function Mute(touch)
     end
 end
 
+-----------------------------------------------------------------------------------------
+
+-- this function turns on the sound when the unmute button is pressed
+local function Unmute(touch)
+    if (touch.phase == "ended") then
+        -- pause the sound 
+        audio.play(bkgMusic)
+        -- set the boolean variable to be false (sound is now muted)
+        soundOn = true
+        -- hide the mute button
+        muteButton.isVisible = true
+        -- reveal the unmute button
+        unmuteButton.isVisible = false
+    end
+end
 
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
@@ -237,6 +252,7 @@ function scene:show( event )
         -- play the background music for this scene
         bkgMusicChannel = audio.play( bkgMusic, {channel=1, loops=-1} )
         muteButton:addEventListener("touch", Mute)
+        unmuteButton:addEventListener("touch", Unmute)
     end
 
 end -- function scene:show( event )
@@ -262,6 +278,7 @@ function scene:hide( event )
 
     elseif ( phase == "did" ) then
         muteButton:removeEventListener("touch", Mute)
+        unmuteButton:removeEventListener("touch", Unmute)
 
     end
 
