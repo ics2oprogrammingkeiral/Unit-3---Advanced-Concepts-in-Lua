@@ -29,6 +29,14 @@ sceneName = "main_menu"
 local scene = composer.newScene( sceneName )
 
 -----------------------------------------------------------------------------------------
+-- SOUNDS
+-----------------------------------------------------------------------------------------
+
+-- background music
+local bkgMusic = audio.loadStream("Sounds/mii-plaza.mp3")
+local bkgMusicChannel 
+
+-----------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
 -----------------------------------------------------------------------------------------
 
@@ -38,10 +46,6 @@ local creditsButton
 local instructionsButton
 local muteButton
 local unmuteButton
-
--- background music
-local bkgMusic = audio.loadStream("Sounds/mii-plaza.mp3")
-local bkgMusicChannel 
 
 -----------------------------------------------------------------------------------------
 -- GLOBAL VARIABLES
@@ -93,7 +97,7 @@ end
 local function Unmute(touch)
     if (touch.phase == "ended") then
         -- pause the sound 
-        audio.play(bkgMusic)
+        audio.resume(bkgMusic)
         -- set the boolean variable to be false (sound is now muted)
         soundOn = true
         -- hide the mute button
@@ -188,7 +192,6 @@ function scene:create( event )
             onRelease = InstructionsTransition
         } ) 
 
-
         -- scale down the size
         instructionsButton:scale(0.55, 0.55)
 
@@ -210,7 +213,7 @@ function scene:create( event )
     unmuteButton.isVisible = false   
 
     -- scale down the size
-    muteButton:scale(0.75, 0.75)    
+    unmuteButton:scale(0.65, 0.65)    
     
     -----------------------------------------------------------------------------------------
     -- Associating button widgets with this scene
@@ -220,7 +223,6 @@ function scene:create( event )
     sceneGroup:insert( muteButton )
     sceneGroup:insert( unmuteButton )
 
-    -- INSERT INSTRUCTIONS BUTTON INTO SCENE GROUP
 
 end -- function scene:create( event )   
 
