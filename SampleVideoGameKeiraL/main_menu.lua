@@ -35,6 +35,9 @@ local scene = composer.newScene( sceneName )
 -- background music
 local bkgMusic = audio.loadStream("Sounds/mii-plaza.mp3")
 local bkgMusicChannel 
+-- bell noise
+local bellSound = audio.loadSound("Sounds/shortBell.mp3")
+local bellSoundChannel
 
 -----------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
@@ -104,6 +107,17 @@ local function Unmute(touch)
         muteButton.isVisible = true
         -- reveal the unmute button
         unmuteButton.isVisible = false
+    end
+end
+
+-----------------------------------------------------------------------------------------
+
+-- this function plays a bell noise whenever the play,
+-- instructions, or credits buttons are pressed
+local function Ding(touch)
+    if (touch.phase == "ended") then
+        -- play the bell noise
+        audio.play(bellSound)
     end
 end
 
@@ -253,8 +267,14 @@ function scene:show( event )
     elseif ( phase == "did" ) then       
         -- play the background music for this scene
         bkgMusicChannel = audio.play( bkgMusic, {channel=1, loops=-1} )
+        -- adding the mute and unmute listeners to my scene
         muteButton:addEventListener("touch", Mute)
         unmuteButton:addEventListener("touch", Unmute)
+        --
+        playButton:addEventListener("touch", Ding)
+        creditsButton:addEventListener("touch", Ding)
+        instructionsButton:addEventListener("touch", Ding)
+
     end
 
 end -- function scene:show( event )
@@ -281,6 +301,11 @@ function scene:hide( event )
     elseif ( phase == "did" ) then
         muteButton:removeEventListener("touch", Mute)
         unmuteButton:removeEventListener("touch", Unmute)
+
+        --
+        playButton:removeEventListener("touch", Ding)
+        creditsButton:removeEventListener("touch", Ding)
+        instructionsButton:removeEventListener("touch", Ding)
 
     end
 
