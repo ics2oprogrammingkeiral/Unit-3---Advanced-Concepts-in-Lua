@@ -80,6 +80,13 @@ end
 
 -----------------------------------------------------------------------------------------
 
+-- Creating Transition to Level2 Screen
+local function Level2ScreenTransition( )
+    composer.gotoScene( "level2_screen", {effect = "flipFadeOutIn", time = 1000})
+end
+
+-----------------------------------------------------------------------------------------
+
 -- this function mutes the sound when the mute button is pressed
 local function Mute(touch)
     if (touch.phase == "ended") then
@@ -162,7 +169,7 @@ function scene:create( event )
             overFile = "Images/PlayButtonPressed.png",
 
             -- When the button is released, call the Level1 screen transition function
-            onRelease = Level1ScreenTransition          
+            onRelease = Level2ScreenTransition          
         } )
 
 
