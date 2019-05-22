@@ -33,9 +33,7 @@ local bkg_image
 
 local car 
 
-local dArrow
 local rArrow 
-local uArrow
 local lArrow
 
 local heart1
@@ -78,18 +76,6 @@ end
 local function left (touch)
     motionx = SPEED2
     character.xScale = -1
-end
-
--- When up arrow is touched, add vertical so it can jump
-local function up (touch)
-    motiony = SPEED
-    car.yscale = 1
-end
-
--- When up arrow is touched, add vertical so it can jump
-local function down (touch)
-    motiony = SPEED2
-    car.yscale = -1
 end
 
 -- Move character horizontally
@@ -140,9 +126,6 @@ local function ReplaceCharacter()
 
     -- intialize horizontal movement of character
     motionx = 0
-
-    -- intialize vertical movement of character
-    motiony = 0
 end
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
@@ -166,6 +149,23 @@ function scene:create( event )
     -- Send the background image to the back layer so all other objects can be on top
     bkg_image:toBack()
 
+    --Insert the right arrow
+    rArrow = display.newImageRect("Images/rightArrowUnpressed.png", 100, 50)
+    rArrow.x = display.contentWidth * 9.2 / 10
+    rArrow.y = display.contentHeight * 9.5 / 10
+   
+
+    -- Insert objects into the scene group in order to ONLY be associated with this scene
+    sceneGroup:insert( rArrow)
+
+    --Insert the left arrow
+    lArrow = display.newImageRect("Images/leftArrowUnpressed.png", 100, 50)
+    lArrow.x = display.contentWidth * 7.2 / 10
+    lArrow.y = display.contentHeight * 9.5 / 10
+
+    -- Insert objects into the scene group in order to ONLY be associated with this scene
+    sceneGroup:insert( lArrow)
+  
     -----------------------------------------------------------------------------------------
     -- BUTTON WIDGETS
     -----------------------------------------------------------------------------------------
